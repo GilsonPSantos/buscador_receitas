@@ -9,6 +9,9 @@ public class Regra {
 	private Integer tamanhoMaximo;
 	private Integer tamanhoMinimo;
 	private String nomeCampo;
+	private String mensagemCampoNulo;
+	private String mensagemTamanhoMaximo;
+	private String mensagemTamanhoMinimo;
 	
 	public Regra() {
 	}
@@ -52,5 +55,30 @@ public class Regra {
 	public void setNomeCampo(String nomeCampo) {
 		this.nomeCampo = nomeCampo;
 	}
+
+	public String getMensagemCampoNulo() {
+		return mensagemCampoNulo;
+	}
+
+	public void setMensagemCampoNulo(String mensagemCampoNulo) {
+		this.mensagemCampoNulo = mensagemCampoNulo;
+	}
+
+	public String getMensagemTamanhoMaximo() {
+		return mensagemTamanhoMaximo;
+	}
+
+	public void setMensagemTamanhoMaximo(String mensagemTamanhoMaximo) {
+		this.mensagemTamanhoMaximo = mensagemTamanhoMaximo;
+	}
+
+	public String getMensagemTamanhoMinimo() {
+		return mensagemTamanhoMinimo;
+	}
+
+	public void setMensagemTamanhoMinimo(String mensagemTamanhoMinimo) {
+		this.mensagemTamanhoMinimo = mensagemTamanhoMinimo;
+	}
+
 	
 }
