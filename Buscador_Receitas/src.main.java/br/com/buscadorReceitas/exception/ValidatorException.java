@@ -8,6 +8,8 @@ public class ValidatorException extends Exception {
 	
 	public ValidatorException(String mensagem) {
 		super(mensagem);
+		this.message = mensagem;
+		
 	}
 
 	public String getMessage() {

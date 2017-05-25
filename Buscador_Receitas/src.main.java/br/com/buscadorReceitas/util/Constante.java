@@ -11,5 +11,9 @@ public class Constante {
 	
 	public final static String MENSAGEM_TIPO_DIFERENTE = "msg.validator.erro.tipoDiferente";
 	
+	public final static String MENSAGEM_ALTERADO_SUCESSO = "msg.successo.alterar.usuario";
+	
+	public final static String MEDIA_TYPE_JSON = "application/json;charset=utf-8";
+	
 
 }

@@ -8,7 +8,6 @@ public class JPAUtil {
 	
 	private static final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("buscadorReceitas");
 	
-
 	public static EntityManager getEntityManager() {
 		return entityManagerFactory.createEntityManager();
 	}

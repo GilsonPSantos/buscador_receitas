@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import javax.xml.bind.ValidationException;
+
 import br.com.buscadorReceitas.exception.IntegrationException;
 import br.com.buscadorReceitas.exception.ValidatorException;
 import br.com.buscadorReceitas.model.Usuario;
@@ -13,6 +15,7 @@ import br.com.buscadorReceitas.propriedades.Propriedade;
 import br.com.buscadorReceitas.propriedades.TipoArquivoProperties;
 import br.com.buscadorReceitas.util.Constante;
 import br.com.buscadorReceitas.validator.Regra;
+import br.com.buscadorReceitas.validator.Validador;
 
 public class ValidarUsuario {
 	private Properties propertiesCampos;
@@ -20,7 +23,7 @@ public class ValidarUsuario {
 	
 	private List<Regra> listaRegras;
 	
-	public void validar(Usuario usuario, String acao) throws ValidatorException, IOException {
+	public void validar(Usuario usuario, String acao) throws ValidatorException, IOException, ValidationException {
 		listaRegras = new ArrayList<Regra>();
 		try {
 			propertiesCampos = Propriedade.getArquivoProperties(TipoArquivoProperties.NOME_CAMPOS, getClass());
@@ -69,6 +72,9 @@ public class ValidarUsuario {
 			regra.setMensagemTamanhoMaximo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_TAMANHO_MAXIMO, regra.getNomeCampo(),regra.getTamanhoMaximo()));
 			regra.setMensagemTamanhoMinimo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_TAMANHO_MINIMO,regra.getNomeCampo(),regra.getTamanhoMinimo() ));
 			listaRegras.add(regra);
+			
+			Validador valida = new Validador();
+			valida.validarCampos(usuario, listaRegras);
 			
 			
 			

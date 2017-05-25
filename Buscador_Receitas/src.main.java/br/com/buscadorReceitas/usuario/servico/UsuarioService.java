@@ -17,9 +17,13 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 
 import org.apache.log4j.Logger;
 
+import br.com.buscadorReceitas.exception.ValidatorException;
+import br.com.buscadorReceitas.model.RetornoServico;
 import br.com.buscadorReceitas.model.Usuario;
 import br.com.buscadorReceitas.usuario.facade.UsuarioFacade;
+import br.com.buscadorReceitas.usuario.util.TratarRetornoServico;
 import br.com.buscadorReceitas.usuario.util.ValidarUsuario;
+import br.com.buscadorReceitas.util.Constante;
 
 @Path("/usuario/v1")
 public class UsuarioService implements Serializable {
@@ -32,11 +36,14 @@ public class UsuarioService implements Serializable {
 	private UsuarioFacade usuarioFacade;
 	@Inject
 	private Usuario usuario;
-	
+	@Inject
+	private RetornoServico retornoServico;
+	@Inject
+	private TratarRetornoServico tratarRetornoServico;
 	
 	@Path("/inserirUsuario")
 	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes(Constante.MEDIA_TYPE_JSON)
 	public Response inserir(Usuario usuario){
 		try {
 			usuarioFacade.inserir(usuario);
@@ -50,7 +57,7 @@ public class UsuarioService implements Serializable {
 	
 	@Path("/getUsuarioById/{id}")
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(Constante.MEDIA_TYPE_JSON)
 	public Usuario consultarUsuarioPeloId(@PathParam(value="id") Integer idUsuario){
 		try {
 			usuario.setIdUsuario(idUsuario);
@@ -65,24 +72,23 @@ public class UsuarioService implements Serializable {
 	
 	@Path("/alterarUsuario")
 	@PUT
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response alterar(Usuario usuario){
-		ResponseBuilder response = null;
+	@Consumes(Constante.MEDIA_TYPE_JSON)
+	@Produces(Constante.MEDIA_TYPE_JSON)
+	public RetornoServico alterar(Usuario usuario){
 		try {
 			ValidarUsuario validacao = new ValidarUsuario();
 			validacao.validar(usuario, "alterar");
 			usuarioFacade.alterar(usuario);
-			response = Response.ok("alterado com sucesso", MediaType.APPLICATION_JSON).status(201);
-			
+			tratarRetornoServico.tratarRetornoSucesso(retornoServico);
+		}catch (ValidatorException validatorException) {
+			LOGGER.error(validatorException.getMessage());
+			tratarRetornoServico.tratarRetornoError(validatorException, retornoServico);
 		} catch (Exception ex) {
 			LOGGER.error(ex.getMessage());
-			response = Response.serverError().status(500);
-			return response.build();
+			tratarRetornoServico.tratarRetornoError(ex, retornoServico);
 		}
-		return response.build();
-		
+		return retornoServico;
 	}
-
 	
 	
 
