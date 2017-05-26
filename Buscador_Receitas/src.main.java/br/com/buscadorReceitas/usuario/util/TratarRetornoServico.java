@@ -18,26 +18,24 @@ public class TratarRetornoServico {
 	private Properties propertiesMensagens;
 
 	public void tratarRetornoError(Exception ex, RetornoServico retornoServico) {
-
-		try {
-			propertiesMensagens = Propriedade.getArquivoProperties(TipoArquivoProperties.MENSAGENS, getClass());
 			retornoServico.setCodigo(500);
 			retornoServico.setMensagem(new ArrayList<String>());
 			retornoServico.getMensagem().add(ex.getMessage());
-		} catch (IntegrationException integrationException) {
-			LOGGER.error(integrationException.getMessage());
-		}
-
-		
 	}
 
-	public void tratarRetornoSucesso(RetornoServico retornoServico) {
+	public void tratarRetornoSucesso(RetornoServico retornoServico, String acao) {
+		String mensagem = "";
 		try {
 			propertiesMensagens = Propriedade.getArquivoProperties(TipoArquivoProperties.MENSAGENS, getClass());
+			
+			switch(acao) {
+			case "alterar": mensagem = Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_ALTERADO_SUCESSO, null);
+			case "incluir": mensagem = Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_ALTERADO_SUCESSO, null);
+			}
+			
 			retornoServico.setCodigo(201);
 			retornoServico.setMensagem(new ArrayList<String>());
-			retornoServico.getMensagem().add(
-					Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_ALTERADO_SUCESSO, null));
+			retornoServico.getMensagem().add(mensagem);
 		} catch (IntegrationException integrationException) {
 			LOGGER.error(integrationException.getMessage());
 		}

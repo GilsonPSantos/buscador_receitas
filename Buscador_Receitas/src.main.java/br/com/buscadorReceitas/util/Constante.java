@@ -13,6 +13,8 @@ public class Constante {
 	
 	public final static String MENSAGEM_ALTERADO_SUCESSO = "msg.successo.alterar.usuario";
 	
+	public final static String MENSAGEM_INCLUIDO_SUCESSO = "msg.successo.incluir.usuario";
+	
 	public final static String MEDIA_TYPE_JSON = "application/json;charset=utf-8";
 	
 

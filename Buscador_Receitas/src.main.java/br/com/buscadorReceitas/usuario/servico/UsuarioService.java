@@ -44,14 +44,20 @@ public class UsuarioService implements Serializable {
 	@Path("/inserirUsuario")
 	@POST
 	@Consumes(Constante.MEDIA_TYPE_JSON)
-	public Response inserir(Usuario usuario){
+	public RetornoServico inserir(Usuario usuario){
 		try {
+			ValidarUsuario validacao = new ValidarUsuario();
+			validacao.validar(usuario, "inserir");
 			usuarioFacade.inserir(usuario);
-			
+			tratarRetornoServico.tratarRetornoSucesso(retornoServico, "inserir");
+		}catch (ValidatorException validatorException) {
+			LOGGER.error(validatorException.getMessage());
+			tratarRetornoServico.tratarRetornoError(validatorException, retornoServico);
 		} catch (Exception ex) {
 			LOGGER.error(ex.getMessage());
+			tratarRetornoServico.tratarRetornoError(ex, retornoServico);
 		}
-		return Response.ok().build();
+		return retornoServico;
 		
 	}
 	
@@ -79,7 +85,7 @@ public class UsuarioService implements Serializable {
 			ValidarUsuario validacao = new ValidarUsuario();
 			validacao.validar(usuario, "alterar");
 			usuarioFacade.alterar(usuario);
-			tratarRetornoServico.tratarRetornoSucesso(retornoServico);
+			tratarRetornoServico.tratarRetornoSucesso(retornoServico,"alterar");
 		}catch (ValidatorException validatorException) {
 			LOGGER.error(validatorException.getMessage());
 			tratarRetornoServico.tratarRetornoError(validatorException, retornoServico);

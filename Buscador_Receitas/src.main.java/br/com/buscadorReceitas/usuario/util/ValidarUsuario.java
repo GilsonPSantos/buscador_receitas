@@ -28,17 +28,19 @@ public class ValidarUsuario {
 		try {
 			propertiesCampos = Propriedade.getArquivoProperties(TipoArquivoProperties.NOME_CAMPOS, getClass());
 			propertiesMensagens = Propriedade.getArquivoProperties(TipoArquivoProperties.MENSAGENS,getClass());
-			
 			Regra regra = new Regra();
-			regra.setCampo(usuario.getClass().getDeclaredField("idUsuario"));
-			regra.setCampoNulo(false);
-			regra.setNomeCampo(Propriedade.getMessageProperties(propertiesCampos, ConstanteUsuario.NOME_CAMPO_ID_USUARIO));
-			regra.setTamanhoMaximo(null);
-			regra.setTamanhoMinimo(1);
-			regra.setMensagemCampoNulo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_CAMPO_NULO, regra.getNomeCampo()));
-			regra.setMensagemTamanhoMaximo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_TAMANHO_MAXIMO, regra.getNomeCampo(),regra.getTamanhoMaximo()));
-			regra.setMensagemTamanhoMinimo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_TAMANHO_MINIMO,regra.getNomeCampo(),regra.getTamanhoMinimo() ));
-			listaRegras.add(regra);
+			
+			if(acao.equals("alterar")) {
+				regra.setCampo(usuario.getClass().getDeclaredField("idUsuario"));
+				regra.setCampoNulo(false);
+				regra.setNomeCampo(Propriedade.getMessageProperties(propertiesCampos, ConstanteUsuario.NOME_CAMPO_ID_USUARIO));
+				regra.setTamanhoMaximo(null);
+				regra.setTamanhoMinimo(1);
+				regra.setMensagemCampoNulo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_CAMPO_NULO, regra.getNomeCampo()));
+				regra.setMensagemTamanhoMaximo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_TAMANHO_MAXIMO, regra.getNomeCampo(),regra.getTamanhoMaximo()));
+				regra.setMensagemTamanhoMinimo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_TAMANHO_MINIMO,regra.getNomeCampo(),regra.getTamanhoMinimo() ));
+				listaRegras.add(regra);
+			}
 			
 			regra = new Regra();
 			regra.setCampo(usuario.getClass().getDeclaredField("nome"));
