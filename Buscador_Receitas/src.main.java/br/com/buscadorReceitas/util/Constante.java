@@ -17,5 +17,7 @@ public class Constante {
 	
 	public final static String MEDIA_TYPE_JSON = "application/json;charset=utf-8";
 	
+	public final static String ERRO_INTERNO = "msg.successo.erro.interno";
+	
 
 }

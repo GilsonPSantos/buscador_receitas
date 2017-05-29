@@ -19,7 +19,7 @@
 	     <class>br.com.buscadorReceitas.model.CardapioProdutoPK</class>
 	    <properties>
 	      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-	      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/BUSCADOR_RECEITAS" />
+	      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/BUSCADOR_RECEITAS?createDatabaseIfNotExist=true" />
 	      <property name="javax.persistence.jdbc.user" value="postgres" />
 	      <property name="javax.persistence.jdbc.password" value="gps123" />
 	      <property name="hibernate.show_sql" value="true" />

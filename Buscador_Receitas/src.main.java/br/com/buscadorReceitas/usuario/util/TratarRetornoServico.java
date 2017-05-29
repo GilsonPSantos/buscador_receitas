@@ -23,14 +23,14 @@ public class TratarRetornoServico {
 			retornoServico.getMensagem().add(ex.getMessage());
 	}
 
-	public void tratarRetornoSucesso(RetornoServico retornoServico, String acao) {
+	public void tratarRetornoSucesso(RetornoServico retornoServico, String acao, Class<?> classe) {
 		String mensagem = "";
 		try {
 			propertiesMensagens = Propriedade.getArquivoProperties(TipoArquivoProperties.MENSAGENS, getClass());
 			
 			switch(acao) {
-			case "alterar": mensagem = Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_ALTERADO_SUCESSO, null);
-			case "incluir": mensagem = Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_ALTERADO_SUCESSO, null);
+			case "alterar": mensagem = Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_ALTERADO_SUCESSO, classe.getSimpleName());
+			case "inserir": mensagem = Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_INCLUIDO_SUCESSO, classe.getSimpleName());
 			}
 			
 			retornoServico.setCodigo(201);

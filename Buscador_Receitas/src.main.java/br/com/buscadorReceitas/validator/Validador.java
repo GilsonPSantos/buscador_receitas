@@ -36,11 +36,11 @@ public class Validador {
 				
 				if(!numerico) {
 					
-					if(null != regra.getCampo().get(classe) && regra.getTamanhoMaximo() > valor.length()) {
+					if(null != regra.getCampo().get(classe) && regra.getTamanhoMaximo() < valor.length()) {
 						listaErros.append(regra.getMensagemTamanhoMaximo());
 					}
 					
-					if(null != regra.getCampo().get(classe) && regra.getTamanhoMinimo() < valor.length()) {
+					if(null != regra.getCampo().get(classe) && regra.getTamanhoMinimo() > valor.length()) {
 						listaErros.append(regra.getMensagemTamanhoMinimo());
 					}
 				}

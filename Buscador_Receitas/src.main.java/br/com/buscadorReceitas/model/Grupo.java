@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="GRUPO")
 public class Grupo implements Serializable{
@@ -23,7 +25,9 @@ public class Grupo implements Serializable{
 	private Integer idGrupo;
 	@Column(length=50, unique=true, nullable=false)
 	private String nome;
-	@OneToMany(mappedBy="grupo", fetch=FetchType.EAGER)
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="grupo", fetch=FetchType.LAZY)
 	private List<Produto> listaProdutos;
 	
 	public Integer getIdGrupo() {

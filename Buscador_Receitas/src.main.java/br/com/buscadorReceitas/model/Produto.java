@@ -2,7 +2,6 @@ package br.com.buscadorReceitas.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,7 +26,7 @@ public class Produto implements Serializable{
 	@Column(length=50, unique=true)
 	private String codigoBarras;
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="ID_GRUPO", nullable=false, referencedColumnName="idGrupo")
 	private Grupo grupo;
 	

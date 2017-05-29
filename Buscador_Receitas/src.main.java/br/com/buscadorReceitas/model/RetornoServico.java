@@ -1,6 +1,7 @@
 package br.com.buscadorReceitas.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RetornoServico implements Serializable{
@@ -25,6 +26,13 @@ public class RetornoServico implements Serializable{
 
 	public void setMensagem(List<String> mensagem) {
 		this.mensagem = mensagem;
+	}
+	
+	public void adicionarMensagem(String mensagem) {
+		if(this.mensagem == null) {
+			this.mensagem = new ArrayList<String>();
+		}
+		this.mensagem.add(mensagem);
 	}
 	
 	

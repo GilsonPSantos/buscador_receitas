@@ -11,7 +11,7 @@ public class ValidatorException extends Exception {
 		this.message = mensagem;
 		
 	}
-
+	
 	public String getMessage() {
 		return message;
 	}
