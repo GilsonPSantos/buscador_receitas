@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import br.com.buscadorReceitas.model.Grupo;
 import br.com.buscadorReceitas.model.Produto;
 import br.com.buscadorReceitas.produto.dao.ProdutoDao;
 
@@ -35,6 +36,11 @@ public class ProdutoFacadeImpl implements ProdutoFacade{
 	@Override
 	public Produto buscarPeloCodigo(Produto produto) throws Exception {
 		return produtoDao.buscarPeloCodigo(produto);
+	}
+
+	@Override
+	public List<Produto> listarProdutosPeloGrupo(Grupo grupo) throws Exception {
+		return produtoDao.listarProdutosPeloGrupo(grupo);
 	}
 
 }

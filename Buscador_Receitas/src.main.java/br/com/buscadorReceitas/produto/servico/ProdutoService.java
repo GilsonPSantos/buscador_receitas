@@ -15,6 +15,7 @@ import javax.ws.rs.Produces;
 import org.apache.log4j.Logger;
 
 import br.com.buscadorReceitas.exception.ValidatorException;
+import br.com.buscadorReceitas.model.Grupo;
 import br.com.buscadorReceitas.model.Produto;
 import br.com.buscadorReceitas.model.RetornoServico;
 import br.com.buscadorReceitas.produto.facade.ProdutoFacade;
@@ -36,6 +37,8 @@ public class ProdutoService implements Serializable{
 	private RetornoServico retornoServico;
 	@Inject
 	private TratarRetornoServico tratarRetornoServico;
+	@Inject
+	private Grupo grupo;
 	
 	@Path("/inserirProduto")
 	@POST
@@ -106,6 +109,20 @@ public class ProdutoService implements Serializable{
 	public List<Produto> listar(){
 		try {
 				return produtoFacade.listar();
+		} catch (Exception ex) {
+			LOGGER.error(ex.getMessage());
+			tratarRetornoServico.tratarRetornoError(ex, retornoServico);
+			return null;
+		}
+	}
+	
+	@Path("/listarProdutosPeloGrupo/{id}")
+	@GET
+	@Produces(Constante.MEDIA_TYPE_JSON)
+	public List<Produto> listarProdutosPeloGrupo(@PathParam(value="id") Integer idGrupo){
+		try {
+				grupo.setIdGrupo(idGrupo);
+				return produtoFacade.listarProdutosPeloGrupo(grupo);
 		} catch (Exception ex) {
 			LOGGER.error(ex.getMessage());
 			tratarRetornoServico.tratarRetornoError(ex, retornoServico);

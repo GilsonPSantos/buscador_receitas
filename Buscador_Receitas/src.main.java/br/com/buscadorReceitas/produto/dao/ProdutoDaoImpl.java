@@ -3,8 +3,10 @@ package br.com.buscadorReceitas.produto.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import br.com.buscadorReceitas.dao.JPAUtil;
+import br.com.buscadorReceitas.model.Grupo;
 import br.com.buscadorReceitas.model.Produto;
 
 public class ProdutoDaoImpl implements ProdutoDao{
@@ -41,6 +43,13 @@ public class ProdutoDaoImpl implements ProdutoDao{
 	@Override
 	public Produto buscarPeloCodigo(Produto produto) throws Exception {
 		return entityManager.find(Produto.class, produto.getIdProduto());
+	}
+
+	@Override
+	public List<Produto> listarProdutosPeloGrupo(Grupo grupo) throws Exception {
+		 TypedQuery<Produto> query = entityManager.createQuery("SELECT p FROM Produto p WHERE p.grupo.idGrupo=:idGrupo",Produto.class);
+		 query.setParameter("idGrupo", grupo.getIdGrupo());
+		  return query.getResultList();
 	}
 
 }
