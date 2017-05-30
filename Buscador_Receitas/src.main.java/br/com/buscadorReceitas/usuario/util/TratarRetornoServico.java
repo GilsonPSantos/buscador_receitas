@@ -29,8 +29,12 @@ public class TratarRetornoServico {
 			propertiesMensagens = Propriedade.getArquivoProperties(TipoArquivoProperties.MENSAGENS, getClass());
 			
 			switch(acao) {
-			case "alterar": mensagem = Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_ALTERADO_SUCESSO, classe.getSimpleName());
-			case "inserir": mensagem = Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_INCLUIDO_SUCESSO, classe.getSimpleName());
+			case "alterar": 
+				mensagem = Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_ALTERADO_SUCESSO, classe.getSimpleName());
+				break;
+			case "inserir": 
+				mensagem = Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_INCLUIDO_SUCESSO, classe.getSimpleName());
+				break;
 			}
 			
 			retornoServico.setCodigo(201);
