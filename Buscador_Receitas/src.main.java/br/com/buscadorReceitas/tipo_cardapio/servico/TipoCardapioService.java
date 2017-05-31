@@ -15,8 +15,6 @@ import org.apache.log4j.Logger;
 
 import br.com.buscadorReceitas.exception.ValidatorException;
 import br.com.buscadorReceitas.grupo.servico.GrupoService;
-import br.com.buscadorReceitas.grupo.util.ValidadorGrupo;
-import br.com.buscadorReceitas.model.Grupo;
 import br.com.buscadorReceitas.model.RetornoServico;
 import br.com.buscadorReceitas.model.TipoCardapio;
 import br.com.buscadorReceitas.tipo_cardapio.facade.TipoCardapioFacade;

@@ -21,15 +21,15 @@ public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idUsuario;
-	@Column(length=50)
+	@Column(length=50, nullable=false)
 	private String nome;
-	@Column(length=50)
+	@Column(length=50, unique=true, nullable=false)
 	private String email;
-	@Column(length=50)
+	@Column(length=50, nullable=false, unique=true)
 	private String senha;
 	@Column(length=50)
 	private String foto;
-	@Column(length=1)
+	@Column(length=1, nullable=false)
 	private Integer ativo;
 	@OneToMany(mappedBy="usuarioResponsavel", fetch=FetchType.EAGER)
 	private List<Cardapio> listaCardapio;

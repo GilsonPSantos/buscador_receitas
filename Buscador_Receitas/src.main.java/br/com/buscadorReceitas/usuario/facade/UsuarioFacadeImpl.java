@@ -14,6 +14,7 @@ public class UsuarioFacadeImpl implements UsuarioFacade{
 
 	@Override
 	public void inserir(Usuario usuario) throws Exception {
+		usuario.setAtivo(1);
 		usuarioDao.inserir(usuario);
 	}
 

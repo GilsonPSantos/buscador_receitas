@@ -1,5 +1,7 @@
 package br.com.buscadorReceitas.cardapio.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import br.com.buscadorReceitas.dao.JPAUtil;
@@ -25,17 +27,20 @@ public class CardapioDaoImpl implements CardapioDao {
 
 	@Override
 	public void excluir(Cardapio cardapio) throws Exception {
-		
+		entityManager.getTransaction().begin();
+		entityManager.remove(cardapio);
+		entityManager.getTransaction().commit();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Cardapio> listar(Cardapio cardapio) throws Exception {
+		return entityManager.createQuery("FROM " + Cardapio.class.getName()).getResultList();
 	}
 
 	@Override
-	public void listar(Cardapio cardapio) throws Exception {
-		
-	}
-
-	@Override
-	public void buscarPeloCodigo(Cardapio cardapio) throws Exception {
-		
+	public Cardapio buscarPeloCodigo(Cardapio cardapio) throws Exception {
+		return entityManager.find(Cardapio.class, cardapio.getIdCardapio());
 	}
 	
 	
