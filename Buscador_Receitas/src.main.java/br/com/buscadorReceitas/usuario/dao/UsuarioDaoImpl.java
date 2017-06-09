@@ -3,6 +3,7 @@ package br.com.buscadorReceitas.usuario.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import br.com.buscadorReceitas.dao.JPAUtil;
 import br.com.buscadorReceitas.model.Usuario;
@@ -42,6 +43,14 @@ public class UsuarioDaoImpl implements UsuarioDao{
 	@Override
 	public Usuario buscarPeloCodigo(Usuario usuario) throws Exception {
 		return entityManager.find(Usuario.class, usuario.getIdUsuario());
+	}
+
+	@Override
+	public Usuario buscarPeloLogin(Usuario usuario) throws Exception {
+		 TypedQuery<Usuario> query = entityManager.createQuery("SELECT u FROM Usuario u WHERE u.email = :email and u.senha = :senha",Usuario.class);
+		 query.setParameter("email", usuario.getEmail());
+		 query.setParameter("senha", usuario.getSenha());
+		return query.getSingleResult();
 	}
 
 }

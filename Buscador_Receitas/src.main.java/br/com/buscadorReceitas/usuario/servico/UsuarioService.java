@@ -2,6 +2,7 @@ package br.com.buscadorReceitas.usuario.servico;
 
 
 import java.io.Serializable;
+import java.util.Properties;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -37,6 +38,8 @@ public class UsuarioService implements Serializable {
 	private RetornoServico retornoServico;
 	@Inject
 	private TratarRetornoServico tratarRetornoServico;
+	
+	
 
 	@Path("/inserirUsuario")
 	@POST
@@ -99,6 +102,29 @@ public class UsuarioService implements Serializable {
 			return retornoServico;
 		}
 	}
+	
+	@Path("/buscarUsuarioPeloLogin/{email}/{senha}")
+	@GET
+	@Produces(Constante.MEDIA_TYPE_JSON)
+	public Object consultarUsuarioPeloLogin(@PathParam(value="email") String email, @PathParam(value="senha") String senha){
+		try {
+			this.usuario.setEmail(email);
+			this.usuario.setSenha(senha);
+			ValidadorUsuario validacao = new ValidadorUsuario();
+			validacao.validar(usuario, "login");
+			this.usuario = usuarioFacade.buscarPeloLogin(usuario);
+			return usuario;
+		}catch (ValidatorException validatorException) {
+			LOGGER.error(validatorException.getMessage());
+			tratarRetornoServico.tratarRetornoError(validatorException, retornoServico);
+			return retornoServico;
+		} catch (Exception ex) {
+			LOGGER.error(ex.getMessage());
+			tratarRetornoServico.tratarRetornoError(ex, retornoServico);
+			return retornoServico;
+		}
+	}
+	
 	
 	@Path("/listarUsuarios")
 	@GET

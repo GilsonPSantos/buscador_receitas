@@ -11,5 +11,6 @@ public class ConstanteUsuario {
 	public static final String NOME_CAMPO_EMAIL_USUARIO = "nome.campo.email.usuario";
 	
 	public static final String NOME_CAMPO_SENHA_USUARIO = "nome.campo.senha.usuario";
+	
 
 }

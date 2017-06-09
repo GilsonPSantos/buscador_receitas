@@ -18,4 +18,8 @@ public class IntegrationException extends Exception {
 		super(message);
 	}
 	
+	public IntegrationException(Exception ex) {
+		super(ex);
+	}
+	
 }

@@ -1,7 +1,6 @@
 package br.com.buscadorReceitas.usuario.util;
 
 import java.io.IOException;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -42,43 +41,46 @@ public class ValidadorUsuario {
 				listaRegras.add(regra);
 			}
 			
-			regra = new Regra();
-			regra.setCampo(usuario.getClass().getDeclaredField("nome"));
-			regra.setCampoNulo(false);
-			regra.setNomeCampo(Propriedade.getMessageProperties(propertiesCampos, ConstanteUsuario.NOME_CAMPO_NOME_USUARIO));
-			regra.setTamanhoMaximo(50);
-			regra.setTamanhoMinimo(2);
-			regra.setMensagemCampoNulo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_CAMPO_NULO, regra.getNomeCampo()));
-			regra.setMensagemTamanhoMaximo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_TAMANHO_MAXIMO, regra.getNomeCampo(),regra.getTamanhoMaximo()));
-			regra.setMensagemTamanhoMinimo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_TAMANHO_MINIMO,regra.getNomeCampo(),regra.getTamanhoMinimo() ));
-			listaRegras.add(regra);
 			
-			regra = new Regra();
-			regra.setCampo(usuario.getClass().getDeclaredField("email"));
-			regra.setCampoNulo(false);
-			regra.setNomeCampo(Propriedade.getMessageProperties(propertiesCampos, ConstanteUsuario.NOME_CAMPO_EMAIL_USUARIO));
-			regra.setTamanhoMaximo(50);
-			regra.setTamanhoMinimo(2);
-			regra.setMensagemCampoNulo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_CAMPO_NULO, regra.getNomeCampo()));
-			regra.setMensagemTamanhoMaximo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_TAMANHO_MAXIMO, regra.getNomeCampo(),regra.getTamanhoMaximo()));
-			regra.setMensagemTamanhoMinimo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_TAMANHO_MINIMO,regra.getNomeCampo(),regra.getTamanhoMinimo() ));
-			listaRegras.add(regra);
+			if(acao.equals("login") || acao.equals("inserir")) {
+				regra = new Regra();
+				regra.setCampo(usuario.getClass().getDeclaredField("email"));
+				regra.setCampoNulo(false);
+				regra.setNomeCampo(Propriedade.getMessageProperties(propertiesCampos, ConstanteUsuario.NOME_CAMPO_EMAIL_USUARIO));
+				regra.setTamanhoMaximo(50);
+				regra.setTamanhoMinimo(2);
+				regra.setMensagemCampoNulo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_CAMPO_NULO, regra.getNomeCampo()));
+				regra.setMensagemTamanhoMaximo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_TAMANHO_MAXIMO, regra.getNomeCampo(),regra.getTamanhoMaximo()));
+				regra.setMensagemTamanhoMinimo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_TAMANHO_MINIMO,regra.getNomeCampo(),regra.getTamanhoMinimo() ));
+				listaRegras.add(regra);
+				
+				regra = new Regra();
+				regra.setCampo(usuario.getClass().getDeclaredField("senha"));
+				regra.setCampoNulo(false);
+				regra.setNomeCampo(Propriedade.getMessageProperties(propertiesCampos, ConstanteUsuario.NOME_CAMPO_SENHA_USUARIO));
+				regra.setTamanhoMaximo(8);
+				regra.setTamanhoMinimo(3);
+				regra.setMensagemCampoNulo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_CAMPO_NULO, regra.getNomeCampo()));
+				regra.setMensagemTamanhoMaximo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_TAMANHO_MAXIMO, regra.getNomeCampo(),regra.getTamanhoMaximo()));
+				regra.setMensagemTamanhoMinimo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_TAMANHO_MINIMO,regra.getNomeCampo(),regra.getTamanhoMinimo() ));
+				listaRegras.add(regra);
+			}
 			
-			regra = new Regra();
-			regra.setCampo(usuario.getClass().getDeclaredField("senha"));
-			regra.setCampoNulo(false);
-			regra.setNomeCampo(Propriedade.getMessageProperties(propertiesCampos, ConstanteUsuario.NOME_CAMPO_SENHA_USUARIO));
-			regra.setTamanhoMaximo(8);
-			regra.setTamanhoMinimo(3);
-			regra.setMensagemCampoNulo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_CAMPO_NULO, regra.getNomeCampo()));
-			regra.setMensagemTamanhoMaximo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_TAMANHO_MAXIMO, regra.getNomeCampo(),regra.getTamanhoMaximo()));
-			regra.setMensagemTamanhoMinimo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_TAMANHO_MINIMO,regra.getNomeCampo(),regra.getTamanhoMinimo() ));
-			listaRegras.add(regra);
+			if(acao.equals("inserir")) {
+				regra = new Regra();
+				regra.setCampo(usuario.getClass().getDeclaredField("nome"));
+				regra.setCampoNulo(false);
+				regra.setNomeCampo(Propriedade.getMessageProperties(propertiesCampos, ConstanteUsuario.NOME_CAMPO_NOME_USUARIO));
+				regra.setTamanhoMaximo(50);
+				regra.setTamanhoMinimo(2);
+				regra.setMensagemCampoNulo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_CAMPO_NULO, regra.getNomeCampo()));
+				regra.setMensagemTamanhoMaximo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_TAMANHO_MAXIMO, regra.getNomeCampo(),regra.getTamanhoMaximo()));
+				regra.setMensagemTamanhoMinimo(Propriedade.getMessageProperties(propertiesMensagens, Constante.MENSAGEM_TAMANHO_MINIMO,regra.getNomeCampo(),regra.getTamanhoMinimo() ));
+				listaRegras.add(regra);
+			}
 			
 			Validador valida = new Validador();
 			valida.validarCampos(usuario, listaRegras);
-			
-			
 			
 		} catch (NoSuchFieldException | SecurityException | IntegrationException e) {
 			e.printStackTrace();

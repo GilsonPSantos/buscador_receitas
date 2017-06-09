@@ -15,5 +15,7 @@ public interface UsuarioDao {
 	public List<Usuario> listar() throws Exception;
 	
 	public Usuario buscarPeloCodigo(Usuario usuario) throws Exception;
+	
+	public Usuario buscarPeloLogin(Usuario usuario) throws Exception;
 
 }
