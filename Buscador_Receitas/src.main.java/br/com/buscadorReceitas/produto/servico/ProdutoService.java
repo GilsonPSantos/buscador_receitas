@@ -20,8 +20,8 @@ import br.com.buscadorReceitas.model.Produto;
 import br.com.buscadorReceitas.model.RetornoServico;
 import br.com.buscadorReceitas.produto.facade.ProdutoFacade;
 import br.com.buscadorReceitas.produto.util.ValidadorProduto;
-import br.com.buscadorReceitas.usuario.util.TratarRetornoServico;
 import br.com.buscadorReceitas.util.Constante;
+import br.com.buscadorReceitas.util.TratarRetornoServico;
 
 @Path("/produto/v1")
 public class ProdutoService implements Serializable{

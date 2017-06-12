@@ -19,8 +19,8 @@ import br.com.buscadorReceitas.model.RetornoServico;
 import br.com.buscadorReceitas.model.TipoCardapio;
 import br.com.buscadorReceitas.tipo_cardapio.facade.TipoCardapioFacade;
 import br.com.buscadorReceitas.tipo_cardapio.util.ValidadorTipoCardapio;
-import br.com.buscadorReceitas.usuario.util.TratarRetornoServico;
 import br.com.buscadorReceitas.util.Constante;
+import br.com.buscadorReceitas.util.TratarRetornoServico;
 
 @Path("/tipo_cardapio/v1")
 public class TipoCardapioService implements Serializable{

@@ -3,6 +3,8 @@ package br.com.buscadorReceitas.cardapio.dao;
 import java.util.List;
 
 import br.com.buscadorReceitas.model.Cardapio;
+import br.com.buscadorReceitas.model.TipoCardapio;
+import br.com.buscadorReceitas.model.Usuario;
 
 public interface CardapioDao {
 	
@@ -12,7 +14,11 @@ public interface CardapioDao {
 	
 	public void excluir(Cardapio cardapio) throws Exception;
 	
-	public List<Cardapio> listar(Cardapio cardapio) throws Exception;
+	public List<Cardapio> listarCardapioPeloUsuario(Usuario usuario) throws Exception;
+	
+	public List<Cardapio> listarCardapioPeloNome(Cardapio cardapio) throws Exception;
+	
+	public List<Cardapio> listarCardapioPeloTipo(TipoCardapio tipoCardapio) throws Exception;
 	
 	public Cardapio buscarPeloCodigo(Cardapio cardapio) throws Exception;
 

@@ -1,4 +1,4 @@
-package br.com.buscadorReceitas.usuario.util;
+package br.com.buscadorReceitas.util;
 
 import java.util.ArrayList;
 import java.util.Properties;
@@ -9,7 +9,6 @@ import br.com.buscadorReceitas.exception.IntegrationException;
 import br.com.buscadorReceitas.model.RetornoServico;
 import br.com.buscadorReceitas.propriedades.Propriedade;
 import br.com.buscadorReceitas.propriedades.TipoArquivoProperties;
-import br.com.buscadorReceitas.util.Constante;
 
 public class TratarRetornoServico {
 

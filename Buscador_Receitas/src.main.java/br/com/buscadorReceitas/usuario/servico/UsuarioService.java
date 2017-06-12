@@ -19,9 +19,9 @@ import br.com.buscadorReceitas.exception.ValidatorException;
 import br.com.buscadorReceitas.model.RetornoServico;
 import br.com.buscadorReceitas.model.Usuario;
 import br.com.buscadorReceitas.usuario.facade.UsuarioFacade;
-import br.com.buscadorReceitas.usuario.util.TratarRetornoServico;
 import br.com.buscadorReceitas.usuario.util.ValidadorUsuario;
 import br.com.buscadorReceitas.util.Constante;
+import br.com.buscadorReceitas.util.TratarRetornoServico;
 
 @Path("/usuario/v1")
 public class UsuarioService implements Serializable {

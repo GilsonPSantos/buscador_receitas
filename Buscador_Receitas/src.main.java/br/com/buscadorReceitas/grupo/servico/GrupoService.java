@@ -18,8 +18,8 @@ import br.com.buscadorReceitas.grupo.facade.GrupoFacade;
 import br.com.buscadorReceitas.grupo.util.ValidadorGrupo;
 import br.com.buscadorReceitas.model.Grupo;
 import br.com.buscadorReceitas.model.RetornoServico;
-import br.com.buscadorReceitas.usuario.util.TratarRetornoServico;
 import br.com.buscadorReceitas.util.Constante;
+import br.com.buscadorReceitas.util.TratarRetornoServico;
 
 @Path("/grupo/v1")
 public class GrupoService implements Serializable {
