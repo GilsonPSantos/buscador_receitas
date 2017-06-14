@@ -31,4 +31,14 @@ public class Favorito implements Serializable{
 		this.dataInclusao = dataInclusao;
 	}
 
+	public UsuarioCardapioPK getUsuarioCardapioPK() {
+		return usuarioCardapioPK;
+	}
+
+	public void setUsuarioCardapioPK(UsuarioCardapioPK usuarioCardapioPK) {
+		this.usuarioCardapioPK = usuarioCardapioPK;
+	}
+	
+	
+
 }
